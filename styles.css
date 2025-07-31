@@ -1,0 +1,98 @@
+/* Base Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
+#mainApp {
+  max-width: 800px;
+  margin: auto;
+  padding: 10px;
+}
+header h1 {
+  margin: 0;
+}
+header p {
+  font-style: italic;
+}
+nav {
+  margin: 10px 0;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.navbtn {
+  padding: 8px 12px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+.navbtn.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+section {
+  margin-bottom: 20px;
+}
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+button {
+  padding: 6px 12px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+button.danger {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+}
+button.danger:hover {
+  background-color: #f1b0b7;
+}
+.viewMode { /* container for view modes */ }
+#activityList {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+#activityList li {
+  margin: 5px 0;
+}
+#activityList button.deleteBtn {
+  margin-left: 10px;
+  padding: 2px 6px;
+}
+/* Responsive: stack nav on narrow screens */
+@media (max-width: 600px) {
+  nav .navbtn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+}
+.dark-mode {
+  background-color: #222;
+  color: #eee;
+}
+.dark-mode .navbtn {
+  background-color: #444;
+  color: #ddd;
+  border-color: #555;
+}
+.dark-mode .navbtn.active {
+  background-color: #339af0;
+  color: #fff;
+}
+.dark-mode a {
+  color: #aad;
+}
+.dark-mode .error {
+  color: #f88;
+}
+.large-text {
+  font-size: 1.2em;
+}

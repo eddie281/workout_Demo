@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inclusive Fitness Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Onboarding / Sign-up & Setup Wizard -->
+  <div id="onboarding">
+    <h1>FitLife Tracker - Welcome!</h1>
+    <!-- Step 1: Account Info -->
+    <div id="step1" class="onboard-step">
+      <h2>Sign Up</h2>
+      <p>Create your account to start tracking your fitness progress.</p>
+      <form id="signupForm">
+        <label for="nameInput">Name:</label><br>
+        <input type="text" id="nameInput" placeholder="Your name" required /><br>
+        <small id="nameError" class="error"></small><br>
+        <label for="emailInput">Email:</label><br>
+        <input type="email" id="emailInput" placeholder="you@example.com" required /><br>
+        <small id="emailError" class="error"></small><br>
+        <label for="passwordInput">Password:</label><br>
+        <input type="password" id="passwordInput" placeholder="Create password" required minlength="6" /><br>
+        <small id="passwordError" class="error"></small><br>
+        <label for="confirmInput">Confirm Password:</label><br>
+        <input type="password" id="confirmInput" placeholder="Confirm password" required /><br>
+        <small id="confirmError" class="error"></small><br>
+        <button type="button" id="next1">Next</button>
+      </form>
+      <p>Or <a href="#" id="skipOnboarding">continue as guest</a></p>
+    </div>
+    <!-- Step 2: Goal Setting -->
+    <div id="step2" class="onboard-step" style="display:none;">
+      <h2>Set Your Goal</h2>
+      <p>What is your daily fitness goal? (You can change this later)</p>
+      <label for="goalInput">Daily Steps Goal:</label><br>
+      <input type="number" id="goalInput" value="10000" /><br>
+      <small id="goalError" class="error"></small><br>
+      <button type="button" id="back1">Back</button>
+      <button type="button" id="next2">Next</button>
+      <p><a href="#" id="skip2">Skip Setup</a></p>
+    </div>
+    <!-- Step 3: Preferences -->
+    <div id="step3" class="onboard-step" style="display:none;">
+      <h2>Preferences</h2>
+      <p>Customize your experience. You can also adjust these later in Settings.</p>
+      <label for="darkModeInput">
+        <input type="checkbox" id="darkModeInput" /> Enable Dark Mode
+      </label><br>
+      <label for="textSizeSelect">Text Size:</label>
+      <select id="textSizeSelect">
+        <option value="normal" selected>Normal</option>
+        <option value="large">Large</option>
+      </select><br><br>
+      <button type="button" id="back2">Back</button>
+      <button type="button" id="finishBtn">Finish</button>
+      <p><a href="#" id="skip3">Skip Setup</a></p>
+    </div>
+  </div>
+  <!-- Main App (hidden until onboarding completed) -->
+  <div id="mainApp" style="display:none;">
+    <header>
+      <h1>FitLife Tracker</h1>
+      <p id="welcomeMsg"></p>
+    </header>
+    <nav>
+      <button class="navbtn" id="navDashboard">Dashboard</button>
+      <button class="navbtn" id="navLog">Log Activity</button>
+      <button class="navbtn" id="navSettings">Settings</button>
+      <button class="navbtn" id="navHelp">Help</button>
+    </nav>
+    <main>
+      <!-- Dashboard Section -->
+      <section id="dashboardSection">
+        <h2>Dashboard</h2>
+        <p id="goalDisplay"></p>
+        <div id="summaryView" class="viewMode">
+          <p><strong>Summary:</strong> You have logged <span id="totalWorkouts">0</span> workouts, totaling <span id="totalMinutes">0</span> minutes.</p>
+        </div>
+        <div id="detailedView" class="viewMode" style="display:none;">
+          <h3>Your Activities</h3>
+          <ul id="activityList"></ul>
+          <p id="undoMsg" style="display:none;">Activity deleted. <a href="#" id="undoLink">Undo</a></p>
+        </div>
+      </section>
+      <!-- Log Activity Section -->
+      <section id="logSection" style="display:none;">
+        <h2>Log Activity</h2>
+        <p>Track a new workout or activity:</p>
+        <form id="logForm">
+          <label for="activityType">Activity:</label><br>
+          <input type="text" id="activityType" placeholder="e.g., Running" required /><br><br>
+          <label for="durationInput">Duration (minutes):</label><br>
+          <input type="number" id="durationInput" required /><br><br>
+          <label for="dateInput">Date:</label><br>
+          <input type="date" id="dateInput" /><br><br>
+          <div id="additionalFields" style="display:none;">
+            <label for="notesInput">Notes:</label><br>
+            <textarea id="notesInput" placeholder="Additional details (optional)"></textarea><br><br>
+          </div>
+          <p><a href="#" id="toggleDetails">Add more details</a></p>
+          <button type="submit" id="addBtn">Add Activity</button>
+          <small id="logError" class="error"></small>
+        </form>
+      </section>
+      <!-- Settings Section -->
+      <section id="settingsSection" style="display:none;">
+        <h2>Settings</h2>
+        <div>
+          <h3>Display</h3>
+          <label>
+            <input type="checkbox" id="darkModeToggle" /> Dark Mode
+          </label><br>
+          <label for="fontSizeSelect">Text Size:</label>
+          <select id="fontSizeSelect">
+            <option value="normal">Normal</option>
+            <option value="large">Large</option>
+          </select><br>
+          <label for="viewSelect">Dashboard View:</label>
+          <select id="viewSelect">
+            <option value="summary">Summary</option>
+            <option value="detailed">Detailed</option>
+          </select>
+        </div>
+        <div>
+          <h3>Account & Data</h3>
+          <button id="resetDataBtn" class="danger">Clear All Data</button>
+          <small>(This will permanently delete your logged activities)</small>
+        </div>
+      </section>
+      <!-- Help Section -->
+      <section id="helpSection" style="display:none;">
+        <h2>Help & Support</h2>
+        <p>Need assistance? Here are some options:</p>
+        <ul>
+          <li>Review the <a href="#" id="showGuide">User Guide</a> for a quick app tour.</li>
+          <li>Check our <a href="#">FAQ</a> (coming soon).</li>
+          <li>Contact support: <a href="mailto:support@fitlife.example">Email Us</a></li>
+        </ul>
+      </section>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
